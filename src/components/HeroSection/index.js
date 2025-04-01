@@ -1,5 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Bio } from '../../data/constants';
+import Typewriter from 'typewriter-effect';
+import HeroImg from '../../components/images/my-photo.jpg';
+import HeroBgAnimation from './bgAnimation/index'
 
 
 const HeroContainer = styled.div`
@@ -200,7 +204,7 @@ const ResumeButton = styled.a`
     
     @media (max-width: 640px) {
         padding: 12px 0;
-        font-size: 18px;
+        font-size: 18px;6
     } 
 
 `;
@@ -210,10 +214,33 @@ export const Hero = () => {
   return (
     <div id="About">
       <HeroContainer>
-        <HeroBg></HeroBg>
+      <HeroBg>
+          <HeroBgAnimation />
+        </HeroBg>
         <HeroInnerContainer>
-          <HeroLeftContainer></HeroLeftContainer>
-          <HeroRightContainer></HeroRightContainer>
+          <HeroLeftContainer>
+            <Title>
+              Hi, I am <br />
+              {Bio.name}
+            </Title>
+            <TextLoop>
+              I am a 
+              <Span>
+                <Typewriter 
+                options={{
+                  strings: Bio.roles,
+                  autoStart: true,
+                  loop: true,
+                }}
+                />
+              </Span>
+            </TextLoop>
+            <SubTitle>{Bio.description}</SubTitle>
+            <ResumeButton href={Bio.resume} target='display'>Check Resume</ResumeButton>
+          </HeroLeftContainer>
+          <HeroRightContainer id="Right">
+            <Img src={HeroImg} alt="hero-image" />
+          </HeroRightContainer>
         </HeroInnerContainer>
       </HeroContainer>
     </div>
